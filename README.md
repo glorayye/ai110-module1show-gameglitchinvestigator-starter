@@ -26,12 +26,17 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+It's a Number Guessing Game where players try to find a randomly selected secret number within a range (difficulty/level based) earning or losing points based on how quickly they succeed before running out of attempts.
 - [ ] Detail which bugs you found.
+1. Enter button didn't work—"Press Enter to apply" displayed but pressing Enter did nothing.
+2. "Out of attempts" message appeared prematurely when users still had guesses remaining due to an off-by-one error in attempt counting.
+3. Attempts counter wasn't updating on first form submission, only showing the change on the second click due to stale widget state.
 - [ ] Explain what fixes you applied.
+Wrapped the text input and submit button in a Streamlit form using st.form("guess_form") and changed the button to st.form_submit_button(), which now allows pressing Enter to automatically submit the guess instead of requiring a button click.I corrected the attempts counter bug by changing the initial attempts from 1 to 0 and adding an early check. To fix the stale widget state issue, I added st.session_state.attempts to the text input key and called st.rerun() after submission to clear the form state and update the display immediately on the first Enter press.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+![test case screenshot](image.png)
 
 ## 🚀 Stretch Features
 
